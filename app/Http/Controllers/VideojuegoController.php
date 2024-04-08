@@ -90,7 +90,7 @@ class VideojuegoController extends Controller
     public function update(UpdateVideojuegoRequest $request, Videojuego $videojuego)
     {
         $validate = $request->validated();
-        $videojuego->save($validate);
+        $videojuego->update($validate);
 
         return redirect()->route('videojuegos.index')->with('success', 'Videojuego actualizado correctamente!');
     }
@@ -103,8 +103,8 @@ class VideojuegoController extends Controller
         $videojuego->delete();
         return redirect()->route('videojuegos.index');
     }
-    public function insertar(Videojuego $videojuego)
+/*     public function insertar(Videojuego $videojuego)
     {
         $videojuego->usuarios()->attach($roleId);
-    }
+    } */
 }

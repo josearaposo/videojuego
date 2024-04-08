@@ -39,7 +39,7 @@
                         </th>
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             <a class="text-blue-500 blue" href="{{ route('videojuegos.show', $videojuego) }}">
-                                {{ $videojuego->distribuidora }}
+                                {{ $videojuego->desarrolladora }}
                             </a>
                         </th>
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">

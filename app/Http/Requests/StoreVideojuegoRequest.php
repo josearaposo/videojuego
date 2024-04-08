@@ -23,7 +23,7 @@ class StoreVideojuegoRequest extends FormRequest
     {
         return [
             'titulo' => 'unique:videojuegos,titulo|required',
-            'anyo' => 'integer|required',
+            'anyo' => 'digits:4|required',
             'desarrolladora_id' => 'exists:desarrolladoras,id|required'
         ];
     }

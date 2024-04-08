@@ -23,7 +23,7 @@ class UpdateVideojuegoRequest extends FormRequest
     {
         return [
             'titulo' => 'unique:videojuegos,titulo|required',
-            'anyo' => 'integer|required',
+            'anyo' => 'required|digits:4',
             'desarrolladora_id' => 'exists:desarrolladoras,id|required'
         ];
     }

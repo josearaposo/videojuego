@@ -10,10 +10,14 @@
                         Año
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Desarrolladora
+                        <a href="{{ route('videojuegos.index', ['order' => 'desarrolladora', 'order_dir' => order_dir($order == 'desarrolladora', $order_dir)]) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                            Desarrolladora {{ order_dir_arrow($order == 'desarrolladora', $order_dir) }}
+                        </a>
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Distribuidora
+                        <a href="{{ route('videojuegos.index', ['order' => 'distribuidora', 'order_dir' => order_dir($order == 'distribuidora', $order_dir)]) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                            Distribuidora {{ order_dir_arrow($order == 'distribuidora', $order_dir) }}
+                        </a>
                     </th>
                     <th scope="col" class="px-6 py-3" colspan="2">
                         Acción
@@ -35,12 +39,12 @@
                         </th>
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             <a class="text-blue-500 blue" href="{{ route('videojuegos.show', $videojuego) }}">
-                                {{$videojuego->desarrolladora->nombre }}
+                                {{ $videojuego->distribuidora }}
                             </a>
                         </th>
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             <a class="text-blue-500 blue" href="{{ route('videojuegos.show', $videojuego) }}">
-                                {{$videojuego->desarrolladora->distribuidora->nombre }}
+                                {{$videojuego->distribuidora }}
                             </a>
                         </th>
                         <td class="px-6 py-4">

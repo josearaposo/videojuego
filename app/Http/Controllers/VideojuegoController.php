@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateVideojuegoRequest;
 use App\Models\Desarrolladora;
 use App\Models\Videojuego;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class VideojuegoController extends Controller
 {
@@ -19,12 +20,25 @@ class VideojuegoController extends Controller
          $this->authorizeResource(Videojuego::class, 'videojuego');
      }
 
-    public function index()
+    public function index(Request $request)
     {
-        $usuario = Auth::user();
-        $videojuego = $usuario->videojuegos;
+        $order = $request->query('order', 'desarrolladora');
+        $order_dir = $request->query('order_dir', 'asc');
+
+
+        $videojuegos = Videojuego::with(['desarrolladora'])
+            ->selectRaw('videojuegos.* , desarrolladoras.nombre as desarrolladora, distribuidoras.nombre as distribuidora')
+            ->leftJoin('desarrolladoras', 'videojuegos.desarrolladora_id', '=', 'desarrolladoras.id')
+            ->leftJoin('distribuidoras', 'desarrolladoras.distribuidora_id', '=', 'distribuidoras.id')
+            ->leftJoin('posesiones', 'posesiones.videojuego_id', '=', 'videojuegos.id')
+            ->where('posesiones.user_id', '=', $request->user()->id)
+            ->orderBy($order, $order_dir)
+            ->orderBy('desarrolladora')
+            ->paginate(3);
         return view('videojuegos.index', [
-            'videojuegos' => $videojuego,
+            'videojuegos' => $videojuegos,
+            'order' => $order,
+            'order_dir' => $order_dir,
         ]);
     }
 
@@ -88,5 +102,9 @@ class VideojuegoController extends Controller
     {
         $videojuego->delete();
         return redirect()->route('videojuegos.index');
+    }
+    public function insertar(Videojuego $videojuego)
+    {
+        $videojuego->usuarios()->attach($roleId);
     }
 }

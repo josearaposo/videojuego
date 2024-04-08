@@ -15,6 +15,9 @@
                     <x-nav-link :href="route('videojuegos.index')" :active="request()->routeIs('videojuegos.index')">
                         Videojuegos
                     </x-nav-link>
+                    <x-nav-link :href="route('poseo')" :active="request()->routeIs('poseo')">
+                        Posesiones
+                    </x-nav-link>
                 </div>
             </div>
 

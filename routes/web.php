@@ -37,7 +37,10 @@ Route::get('/videojuegos/poseo', function () {
 Route::resource('videojuegos', VideojuegoController::class)
 ->middleware('auth');
 
-Route::get('/videojuego/insertar', [VideojuegoController::class, 'isertar'])
-    ->name('videojuego.insertar');
+Route::get('/videojuegos/insertar/{videojuego}', [VideojuegoController::class, 'insertar'])
+    ->name('videojuegos.insertar');
+
+Route::get('/videojuegos/borrar/{videojuego}', [VideojuegoController::class, 'borrar'])
+    ->name('videojuegos.borrar');
 
 require __DIR__.'/auth.php';

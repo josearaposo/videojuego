@@ -103,8 +103,18 @@ class VideojuegoController extends Controller
         $videojuego->delete();
         return redirect()->route('videojuegos.index');
     }
-/*     public function insertar(Videojuego $videojuego)
+    public function insertar(Videojuego $videojuego)
     {
-        $videojuego->usuarios()->attach($roleId);
-    } */
+        $usuario = Auth::user();
+        $videojuego->usuarios()->attach($usuario);
+        return redirect()->route('poseo');
+    }
+
+    public function borrar(Videojuego $videojuego)
+    {
+
+        $videojuego->usuarios()->detach(Auth::user());
+        return redirect()->route('poseo');
+    }
+
 }

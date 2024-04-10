@@ -51,13 +51,13 @@
 
                             @if (Auth::user()->videojuegos->contains($videojuego))
 
-                                <x-primary-button class="bg-red-500">
-                                    Borrar
-                                </x-primary-button>
+                            <form action="{{ route('videojuegos.borrar', $videojuego) }}" class="flex justify-center mt-4 mb-4">
+                                <x-primary-button class="bg-red-500 mb-2">Borrar</x-primary-button>
+                            </form>
                             @else
-                                <x-primary-button class="bg-green-500">
-                                    Añadir
-                                </x-primary-button>
+                            <form action="{{ route('videojuegos.insertar', $videojuego) }}" class="flex justify-center mt-4 mb-4">
+                                <x-primary-button class="bg-green-500 mb-2">Añadir</x-primary-button>
+                            </form>
                             @endif
                             </a>
                         </td>

@@ -1,5 +1,6 @@
 <x-app-layout>
     <div class="w-1/2 mx-auto">
+        <livewire:selector/>
         <form method="POST"
             action="{{ route('videojuegos.update', ['videojuego' => $videojuego]) }}">
             @csrf
